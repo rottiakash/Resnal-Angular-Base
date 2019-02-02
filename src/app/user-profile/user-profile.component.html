@@ -1,0 +1,73 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="form-group">
+          <label>Batch</label>
+          <select class="form-control" (change)="setBatch($event.target.value)">
+            <option>Select Batch</option>
+            <option *ngFor="let batch of batchs" value="{{ batch }}">{{
+              batch
+            }}</option>
+          </select>
+          <label>Semester</label>
+          <select class="form-control" (change)="setSem($event.target.value)">
+            <option>Select Sem</option>
+            <option *ngFor="let sem of sems" value="{{ sem }}">{{
+              sem
+            }}</option>
+          </select>
+          <label>Section</label>
+          <select class="form-control" (change)="setSec($event.target.value)">
+            <option>Select Sec</option>
+            <option *ngFor="let sec of secs" value="{{ sec }}">{{
+              sec
+            }}</option>
+          </select>
+          <label>Subjects</label>
+          <select class="form-control" (change)="setSub($event.target.value)">
+            <option>Select Subject</option>
+            <option *ngFor="let sub of subs" value="{{ sub }}">{{
+              sub
+            }}</option>
+          </select>
+        </div>
+        <button class="btn btn-large" (click)="api()">Submit</button>
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Toppers</h4>
+            <p class="card-category">Toppers of the batch</p>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <th>USN</th>
+                <th>Name</th>
+                <th>SGPA</th>
+                <th>Rank</th>
+              </thead>
+              <tbody *ngFor="let result of results">
+                <tr>
+                  <td>{{ result.usn }}</td>
+                  <td>{{ result.name }}</td>
+                  <td>{{ result.gpa }}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <canvas id="myChart"></canvas>
+        <div *ngIf="chart">
+          <canvas #canvas id="canvas">{{ chart }}</canvas>
+        </div>
+        <canvas id="myChart"></canvas>
+        <div *ngIf="chart1">
+          <canvas #canvas id="canvas1">{{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
