@@ -8,7 +8,7 @@ export class ApiSecService {
   url;
   constructor(public http: Http) {
     console.log("APi called");
-    this.url = "http://vkhand.pythonanywhere.com/json/?batch=";
+    this.url = "http://127.0.0.1:8000/json/?batch=";
   }
   getResultSec(batch, sem, sec) {
     return this.http
