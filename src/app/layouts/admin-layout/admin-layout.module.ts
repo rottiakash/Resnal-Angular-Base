@@ -11,13 +11,19 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-
+import { FCDtableComponent } from '../../components/fcdtable/fcdtable.component';
+import { GraphComponent } from '../../components/graph/graph.component';
 import {
   MatButtonModule,
   MatInputModule,
   MatRippleModule,
   MatTooltipModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSelectModule,
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import {DataService} from '../../services/data.service'
 @NgModule({
   imports: [
     CommonModule,
@@ -27,6 +33,12 @@ import {
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+  //  ChartsModule
   ],
   declarations: [
     DashboardComponent,
@@ -37,7 +49,10 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-  ]
+    FCDtableComponent,
+  //  GraphComponent  
+  ],
+  providers: [DataService]
 })
 
 export class AdminLayoutModule {}

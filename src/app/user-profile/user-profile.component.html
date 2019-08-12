@@ -39,22 +39,7 @@
             <p class="card-category">Toppers of the batch</p>
           </div>
           <div class="card-body table-responsive">
-            <table class="table table-hover">
-              <thead class="text-warning">
-                <th>USN</th>
-                <th>Name</th>
-                <th>SGPA</th>
-                <th>Rank</th>
-              </thead>
-              <tbody *ngFor="let result of results">
-                <tr>
-                  <td>{{ result.usn }}</td>
-                  <td>{{ result.name }}</td>
-                  <td>{{ result.gpa }}</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <app-fcd-table></app-fcd-table>
           </div>
         </div>
       </div>

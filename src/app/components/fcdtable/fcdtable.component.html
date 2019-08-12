@@ -1,0 +1,39 @@
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <mat-paginator [pageSizeOptions]="[10, 5, 20]" showFirstLastButtons></mat-paginator>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="usn">
+      <mat-header-cell *matHeaderCellDef> USN </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.usn}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="section">
+      <mat-header-cell *matHeaderCellDef> SECTION </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.section}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="intmarks">
+      <mat-header-cell *matHeaderCellDef> Internal Marks </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.intmarks}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="extmarks">
+      <mat-header-cell *matHeaderCellDef> External Marks </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.extmarks}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalmarks">
+      <mat-header-cell *matHeaderCellDef> Total Marks </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.totalmarks}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="gpa">
+      <mat-header-cell *matHeaderCellDef> GPA </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.gpa}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+</div>

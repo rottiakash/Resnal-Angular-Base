@@ -9,6 +9,7 @@ import { ApiSecService } from "../apisec.service";
 import { ChartSecService } from "../chartsec.service";
 import { ChartSubService } from "../chartsub.service";
 import { Chart } from "chart.js";
+import { DataService } from "../services/data.service";
 
 @Component({
   selector: "app-user-profile",
@@ -46,7 +47,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
-    private chartsubservice: ChartSubService
+    private chartsubservice: ChartSubService,
+    private data: DataService
   ) {}
 
   ngOnInit() {}
@@ -121,6 +123,11 @@ export class UserProfileComponent implements OnInit {
   }
   api() {
     console.log(this.batch, this.sem, this.sec, this.sub);
+    var gen: string;
+    var sub: string = this.sub;
+    var scode = sub.substr(0,sub.indexOf(' '));
+    gen = 'http://127.0.0.1:8000/getfcd/?sc=' + scode + '&batch=' + this.batch;
+    this.data.changeMessage(gen);
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
       .subscribe(result => {
