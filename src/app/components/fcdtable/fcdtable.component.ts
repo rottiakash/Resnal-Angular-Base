@@ -48,9 +48,6 @@ export class FCDtableComponent implements OnInit {
       });
       this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn + ',' + this.fn;
       this.data.changeMessage(this.sendstr);
-      if (this.fcdn === 0) {
-        window.alert('No data found. Please check the input');
-      }
     }); });
     this.getStudent().subscribe((students: Student[]) => {
       this.dataSource = new MatTableDataSource(students);

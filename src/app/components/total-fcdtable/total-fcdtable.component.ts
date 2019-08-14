@@ -41,15 +41,12 @@ export class TotalFcdtableComponent implements OnInit {
           this.scn += 1;
         } else if (i.totalFCD === 'P') {
           this.pn += 1;
-        } else {
+        } else if(i.totalFCD === 'F') {
           this.fn += 1;
         }
       });
       this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn + ',' + this.fn;
       this.data.changeMessage(this.sendstr);
-      if (this.fcdn === 0) {
-        window.alert('No data found. Please check the input');
-      }
     }); });
     this.getStudent().subscribe((students: TotalFCD[]) => {
       this.dataSource = new MatTableDataSource(students);

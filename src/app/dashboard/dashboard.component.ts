@@ -16,6 +16,8 @@ import { DataService } from "../services/data.service";
 })
 export class DashboardComponent implements OnInit {
   @ViewChild("canvas") canvas: ElementRef;
+  @ViewChild("fcdgraph") fcdgraph: ElementRef;
+  fcdchart = []
   results = [];
   charts = [];
   sem;
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
   passCount = 0;
   failCount = 0;
   chart = [];
+  seriesData = [];
   constructor(
     private apiservice: ApiService,
     private chartservice: ChartService,
@@ -39,6 +42,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+  reload(){
+    window.location.reload();
+  }
   setBatch(batch) {
     console.log(batch);
     if (batch === "2015") {
@@ -76,6 +82,38 @@ export class DashboardComponent implements OnInit {
       this.results = result;
       this.length = this.results.length;
     });
+    this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
+    console.log(this.seriesData);     
+    this.fcdgraph = new Chart("fcdgraph", {
+      type: 'bar',
+      data: {
+        labels: ['FCD', 'FC', 'SC', 'P', 'F'],
+        datasets: [{
+            data: this.seriesData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      legend:{
+        display:false
+      }
+    }
+    });
+   });
     this.chartservice.getChart(this.batch, this.sem).subscribe(char => {
       this.charts = char;
       console.log(char);

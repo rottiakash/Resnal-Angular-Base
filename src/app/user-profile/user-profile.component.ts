@@ -18,6 +18,7 @@ import { DataService } from "../services/data.service";
 })
 export class UserProfileComponent implements OnInit {
   @ViewChild("canvas") canvas: ElementRef;
+  @ViewChild("fcdtable") fcdtable: ElementRef;
   results = [];
   charts = [];
   charts1 = [];
@@ -44,6 +45,8 @@ export class UserProfileComponent implements OnInit {
   fail1Count = 0;
   chart = [];
   chart1 = [];
+  seriesData = [];
+  fcdgraph = [];
   constructor(
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
@@ -76,6 +79,9 @@ export class UserProfileComponent implements OnInit {
       }
     }
     this.batch = batch;
+  }
+  reload(){
+    window.location.reload();
   }
   setSem(sem) {
     this.sem = sem;
@@ -126,7 +132,7 @@ export class UserProfileComponent implements OnInit {
     var gen: string;
     var sub: string = this.sub;
     var scode = sub.substr(0,sub.indexOf(' '));
-    gen = 'http://127.0.0.1:8000/getfcd/?sc=' + scode + '&batch=' + this.batch;
+    gen = 'http://127.0.0.1:8000/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
@@ -134,6 +140,38 @@ export class UserProfileComponent implements OnInit {
         this.results = result;
         // console.log(result);
       });
+      this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
+      console.log(this.seriesData);     
+      this.fcdgraph = new Chart("fcdgraph", {
+        type: 'bar',
+        data: {
+          labels: ['FCD', 'FC', 'SC', 'P', 'F'],
+          datasets: [{
+              data: this.seriesData,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        legend:{
+          display:false
+        }
+      }
+      });
+     });
     this.chartservice
       .getChartSec(this.batch, this.sem, this.sec)
       .subscribe(char => {

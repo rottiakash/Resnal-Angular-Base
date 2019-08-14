@@ -19,6 +19,7 @@
           </select>
         </div>
         <button class="btn btn-large" (click)="api()">Submit</button>
+        <button class="btn btn-large" (click)="reload()">Reset</button>
         <div class="card">
           <div class="card-header card-header-warning">
             <h4 class="card-title">Toppers</h4>
@@ -32,6 +33,8 @@
       <div class="col-lg-6 col-md-12">
         <canvas id="myChart"></canvas>
         <div *ngIf="chart">
+          <canvas #fcdgraph id="fcdgraph">{{fcdgraph}}</canvas>
+          <br><br>
           <canvas #canvas id="canvas">{{ chart }}</canvas>
         </div>
       </div>
