@@ -8,6 +8,7 @@ import {
 import { ApiService } from "../api.service";
 import { ChartService } from "../chart.service";
 import { Chart } from "chart.js";
+import { DataService } from "../services/data.service";
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -33,7 +34,8 @@ export class DashboardComponent implements OnInit {
   chart = [];
   constructor(
     private apiservice: ApiService,
-    private chartservice: ChartService
+    private chartservice: ChartService,
+    private data : DataService
   ) {}
 
   ngOnInit() {}
@@ -67,6 +69,9 @@ export class DashboardComponent implements OnInit {
   }
   api() {
     console.log(this.batch, this.sem);
+    var gen: string;
+    gen = 'http://127.0.0.1:8000/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
+    this.data.changeMessage(gen);
     this.apiservice.getResult(this.batch, this.sem).subscribe(result => {
       this.results = result;
       this.length = this.results.length;

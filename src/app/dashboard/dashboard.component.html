@@ -25,22 +25,7 @@
             <p class="card-category">Toppers of the batch</p>
           </div>
           <div class="card-body table-responsive">
-            <table class="table table-hover">
-              <thead class="text-warning">
-                <th>USN</th>
-                <th>Name</th>
-                <th>SGPA</th>
-                <th>Rank</th>
-              </thead>
-              <tbody *ngFor="let result of results">
-                <tr>
-                  <td>{{ result.usn }}</td>
-                  <td>{{ result.name }}</td>
-                  <td>{{ result.gpa }}</td>
-                  <td *ngFor="let i of len">{{ i }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <app-total-fcdtable></app-total-fcdtable>
           </div>
         </div>
       </div>

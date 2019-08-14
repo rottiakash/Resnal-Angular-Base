@@ -24,6 +24,7 @@ import {
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import {DataService} from '../../services/data.service'
+import { TotalFcdtableComponent } from '../../components/total-fcdtable/total-fcdtable.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,6 +51,7 @@ import {DataService} from '../../services/data.service'
     NotificationsComponent,
     UpgradeComponent,
     FCDtableComponent,
+    TotalFcdtableComponent
   //  GraphComponent  
   ],
   providers: [DataService]
