@@ -137,7 +137,10 @@ export class UserProfileComponent implements OnInit {
     var gen: string;
     var sub: string = this.sub;
     var scode = sub.substr(0,sub.indexOf(' '));
-    gen = 'http://127.0.0.1:8000/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
+    if(this.sec==undefined)
+      gen = 'http://127.0.0.1:8000/getfcd/?&sc=' + scode + '&batch=' + this.batch;
+    else
+      gen = 'http://127.0.0.1:8000/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
