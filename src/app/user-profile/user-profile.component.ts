@@ -83,6 +83,11 @@ export class UserProfileComponent implements OnInit {
   reload(){
     window.location.reload();
   }
+  exportAsExcel()
+  {
+    console.log("Not yet implemented")
+
+  }
   setSem(sem) {
     this.sem = sem;
     if (this.batch == 2016 && this.sem == 4) {

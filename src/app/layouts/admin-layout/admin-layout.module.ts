@@ -12,7 +12,6 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { FCDtableComponent } from '../../components/fcdtable/fcdtable.component';
-import { GraphComponent } from '../../components/graph/graph.component';
 import {
   MatButtonModule,
   MatInputModule,
@@ -52,7 +51,6 @@ import { TotalFcdtableComponent } from '../../components/total-fcdtable/total-fc
     UpgradeComponent,
     FCDtableComponent,
     TotalFcdtableComponent
-  //  GraphComponent  
   ],
   providers: [DataService]
 })

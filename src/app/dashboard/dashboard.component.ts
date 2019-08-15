@@ -9,6 +9,8 @@ import { ApiService } from "../api.service";
 import { ChartService } from "../chart.service";
 import { Chart } from "chart.js";
 import { DataService } from "../services/data.service";
+import * as XLSX from 'xlsx';
+import { HttpHeaders, HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -17,6 +19,7 @@ import { DataService } from "../services/data.service";
 export class DashboardComponent implements OnInit {
   @ViewChild("canvas") canvas: ElementRef;
   @ViewChild("fcdgraph") fcdgraph: ElementRef;
+  @ViewChild("table") table: ElementRef;
   fcdchart = []
   results = [];
   charts = [];
@@ -38,7 +41,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private apiservice: ApiService,
     private chartservice: ChartService,
-    private data : DataService
+    private data : DataService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {}
@@ -73,6 +77,12 @@ export class DashboardComponent implements OnInit {
   setSem(sem) {
     this.sem = sem;
   }
+  exportAsExcel()
+    {
+      console.log("Not yet implemented:-"+this.batch+":"+this.sem);
+      window.open("http://127.0.0.1:8000/test", "_blank");
+
+    }
   api() {
     console.log(this.batch, this.sem);
     var gen: string;
