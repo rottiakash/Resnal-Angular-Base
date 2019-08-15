@@ -77,12 +77,6 @@ export class DashboardComponent implements OnInit {
   setSem(sem) {
     this.sem = sem;
   }
-  exportAsExcel()
-    {
-      console.log("Not yet implemented:-"+this.batch+":"+this.sem);
-      window.open("http://127.0.0.1:8000/test", "_blank");
-
-    }
   api() {
     console.log(this.batch, this.sem);
     var gen: string;

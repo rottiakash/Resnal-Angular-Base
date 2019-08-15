@@ -85,8 +85,8 @@ export class UserProfileComponent implements OnInit {
   }
   exportAsExcel()
   {
-    console.log("Not yet implemented")
-
+    var scode = this.sub.substr(0,this.sub.indexOf(' '));
+    window.open("http://127.0.0.1:8000/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
   }
   setSem(sem) {
     this.sem = sem;
