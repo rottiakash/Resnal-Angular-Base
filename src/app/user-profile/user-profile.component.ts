@@ -3,7 +3,8 @@ import {
   OnInit,
   AfterViewInit,
   ElementRef,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from "@angular/core";
 import { ApiSecService } from "../apisec.service";
 import { ChartSecService } from "../chartsec.service";
@@ -16,7 +17,15 @@ import { DataService } from "../services/data.service";
   templateUrl: "./user-profile.component.html",
   styleUrls: ["./user-profile.component.css"]
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit,OnDestroy {
+  ngOnDestroy(){
+    if(this.fcdgraph2)
+    {
+      console.log("Destory");
+      this.fcdgraph2.destroy();
+      this.canvas.destroy();
+    }
+  }
   results = [];
   charts = [];
   charts1 = [];
@@ -44,7 +53,7 @@ export class UserProfileComponent implements OnInit {
   chart = [];
   chart1 = [];
   seriesData = [];
-  fcdgraph;
+  fcdgraph2;
   canvas;
   constructor(
     private apisecservice: ApiSecService,
@@ -146,8 +155,8 @@ export class UserProfileComponent implements OnInit {
       });
       this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
       console.log(this.seriesData);    
-      if(this.fcdgraph) this.fcdgraph.destroy(); 
-      this.fcdgraph = new Chart("fcdgraph", {
+      if(this.fcdgraph2) this.fcdgraph2.destroy(); 
+      this.fcdgraph2 = new Chart("fcdgraph2", {
         type: 'bar',
         data: {
           labels: ['FCD', 'FC', 'SC', 'P', 'F'],

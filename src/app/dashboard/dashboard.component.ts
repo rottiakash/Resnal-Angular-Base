@@ -3,7 +3,8 @@ import {
   OnInit,
   AfterViewInit,
   ElementRef,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from "@angular/core";
 import { ApiService } from "../api.service";
 import { ChartService } from "../chart.service";
@@ -16,7 +17,15 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,OnDestroy {
+  ngOnDestroy(): void {
+    if(this.fcdgraph||this.canvas)
+    {
+      console.log("Destroy");
+      this.fcdgraph.destroy();
+      this.canvas.destroy();
+    }
+  }
   fcdchart = []
   results = [];
   charts = [];
