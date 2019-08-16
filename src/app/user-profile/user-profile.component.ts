@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit {
   chart = [];
   chart1 = [];
   seriesData = [];
-  fcdgraph = [];
+  fcdgraph;
   constructor(
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
@@ -79,9 +79,6 @@ export class UserProfileComponent implements OnInit {
       }
     }
     this.batch = batch;
-  }
-  reload(){
-    window.location.reload();
   }
   exportAsExcel()
   {
@@ -149,7 +146,8 @@ export class UserProfileComponent implements OnInit {
         // console.log(result);
       });
       this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
-      console.log(this.seriesData);     
+      console.log(this.seriesData);    
+      if(this.fcdgraph) this.fcdgraph.destroy(); 
       this.fcdgraph = new Chart("fcdgraph", {
         type: 'bar',
         data: {

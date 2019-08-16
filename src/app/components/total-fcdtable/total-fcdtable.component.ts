@@ -41,11 +41,9 @@ export class TotalFcdtableComponent implements OnInit {
           this.scn += 1;
         } else if (i.totalFCD === 'P') {
           this.pn += 1;
-        } else if(i.totalFCD === 'F') {
-          this.fn += 1;
         }
       });
-      this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn + ',' + this.fn;
+      this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn;
       this.data.changeMessage(this.sendstr);
     }); });
     this.getStudent().subscribe((students: TotalFCD[]) => {

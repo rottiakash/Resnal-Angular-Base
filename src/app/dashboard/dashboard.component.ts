@@ -18,7 +18,6 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 })
 export class DashboardComponent implements OnInit {
   @ViewChild("canvas") canvas: ElementRef;
-  @ViewChild("fcdgraph") fcdgraph: ElementRef;
   @ViewChild("table") table: ElementRef;
   fcdchart = []
   results = [];
@@ -38,6 +37,7 @@ export class DashboardComponent implements OnInit {
   failCount = 0;
   chart = [];
   seriesData = [];
+  fcdgraph;
   constructor(
     private apiservice: ApiService,
     private chartservice: ChartService,
@@ -46,9 +46,6 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
-  reload(){
-    window.location.reload();
-  }
   setBatch(batch) {
     console.log(batch);
     if (batch === "2015") {
@@ -87,11 +84,12 @@ export class DashboardComponent implements OnInit {
       this.length = this.results.length;
     });
     this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
-    console.log(this.seriesData);     
+    console.log(this.seriesData); 
+    if(this.fcdgraph) this.fcdgraph.destroy();    
     this.fcdgraph = new Chart("fcdgraph", {
       type: 'bar',
       data: {
-        labels: ['FCD', 'FC', 'SC', 'P', 'F'],
+        labels: ['FCD', 'FC', 'SC', 'P'],
         datasets: [{
             data: this.seriesData,
             backgroundColor: [
