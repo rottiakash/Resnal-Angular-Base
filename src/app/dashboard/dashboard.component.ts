@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   api() {
     console.log(this.batch, this.sem);
     var gen: string;
-    gen = 'http://rottiakash.pythonanywhere.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
+    gen = 'https://rottiakash.pythonanywhere.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
     this.data.changeMessage(gen);
     this.apiservice.getResult(this.batch, this.sem).subscribe(result => {
       this.results = result;

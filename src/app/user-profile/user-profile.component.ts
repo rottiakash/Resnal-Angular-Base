@@ -91,7 +91,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   exportAsExcel()
   {
     var scode = this.sub.substr(0,this.sub.indexOf(' '));
-    window.open("http://rottiakash.pythonanywhere.com/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
+    window.open("https://rottiakash.pythonanywhere.com/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
   }
   setSem(sem) {
     this.sem = sem;
@@ -143,9 +143,9 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     var sub: string = this.sub;
     var scode = sub.substr(0,sub.indexOf(' '));
     if(this.sec==undefined)
-      gen = 'http://rottiakash.pythonanywhere.com/getfcd/?&sc=' + scode + '&batch=' + this.batch;
+      gen = 'https://rottiakash.pythonanywhere.com/getfcd/?&sc=' + scode + '&batch=' + this.batch;
     else
-      gen = 'http://rottiakash.pythonanywhere.com/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
+      gen = 'https://rottiakash.pythonanywhere.com/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
