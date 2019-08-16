@@ -17,8 +17,6 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./user-profile.component.css"]
 })
 export class UserProfileComponent implements OnInit {
-  @ViewChild("canvas") canvas: ElementRef;
-  @ViewChild("fcdtable") fcdtable: ElementRef;
   results = [];
   charts = [];
   charts1 = [];
@@ -47,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   chart1 = [];
   seriesData = [];
   fcdgraph;
+  canvas;
   constructor(
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
@@ -177,143 +176,54 @@ export class UserProfileComponent implements OnInit {
         }
       }
       });
+      this.passCount = this.seriesData[0]+this.seriesData[1]+this.seriesData[2]+this.seriesData[3];
+      this.failCount = this.seriesData[4];
+      if(this.canvas) this.canvas.destroy();
+      this.canvas = new Chart("canvas", {
+        type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+          labels: ["Fail", "Pass"],
+          datasets: [
+            {
+              data: [this.failCount, this.passCount],
+              //backgroundColor:'green',
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.6)",
+                "rgba(54, 162, 235, 0.6)"
+              ],
+              borderWidth: 1,
+              borderColor: "#777",
+              hoverBorderWidth: 3,
+              hoverBorderColor: "#000"
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: this.sub,
+            fontSize: 25
+          },
+          legend: {
+            display: true,
+            position: "right",
+            labels: {
+              fontColor: "#000"
+            }
+          },
+          layout: {
+            padding: {
+              left: 50,
+              right: 0,
+              bottom: 0,
+              top: 0
+            }
+          },
+          tooltips: {
+            enabled: true
+          }
+        }
+      });
      });
-    this.chartservice
-      .getChartSec(this.batch, this.sem, this.sec)
-      .subscribe(char => {
-        this.charts = char;
-        console.log(char);
-        for (var j = 0; j < char.failCount.length; j++) {
-          this.failCount++;
-        }
-        for (var k = 0; k < char.passCount.length; k++) {
-          this.passCount++;
-        }
-
-        console.log(this.failCount);
-        console.log(this.passCount);
-        this.chart = new Chart("canvas", {
-          type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-          data: {
-            labels: ["Fail", "Pass"],
-            datasets: [
-              {
-                data: [this.failCount, this.passCount],
-                //backgroundColor:'green',
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.6)",
-                  "rgba(54, 162, 235, 0.6)"
-                ],
-                borderWidth: 1,
-                borderColor: "#777",
-                hoverBorderWidth: 3,
-                hoverBorderColor: "#000"
-              }
-            ]
-          },
-          options: {
-            title: {
-              display: true,
-              text: "Pass/Fail Count",
-              fontSize: 25
-            },
-            legend: {
-              display: true,
-              position: "right",
-              labels: {
-                fontColor: "#000"
-              }
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0
-              }
-            },
-            tooltips: {
-              enabled: true
-            }
-          }
-        });
-      });
-    this.passCount = 0;
-    this.failCount = 0;
-
-    this.chartsubservice
-      .getChartSub(this.batch, this.sem, this.sub)
-      .subscribe(char1 => {
-        this.charts1 = char1;
-
-        for (var i = 0; i < char1.length; i++) {
-          console.log(char1[i]);
-
-          this.passSubACount = char1[0].passCount;
-          this.passSubBCount = char1[1].passCount;
-          this.passSubCCount = char1[2].passCount;
-          this.failSubACount = char1[0].failCount;
-          this.failSubBCount = char1[1].failCount;
-          this.failSubCCount = char1[2].failCount;
-        }
-        if (this.sec == "A") {
-          this.pass1Count = this.passSubACount;
-          this.fail1Count = this.failSubACount;
-        }
-        if (this.sec == "B") {
-          this.pass1Count = this.passSubBCount;
-          this.fail1Count = this.failSubBCount;
-        }
-        if (this.sec == "C") {
-          this.pass1Count = this.passSubCCount;
-          this.fail1Count = this.failSubCCount;
-        }
-
-        this.chart1 = new Chart("canvas1", {
-          type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-          data: {
-            labels: ["Fail", "Pass"],
-            datasets: [
-              {
-                data: [this.fail1Count, this.pass1Count],
-                //backgroundColor:'green',
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.6)",
-                  "rgba(54, 162, 235, 0.6)"
-                ],
-                borderWidth: 1,
-                borderColor: "#777",
-                hoverBorderWidth: 3,
-                hoverBorderColor: "#000"
-              }
-            ]
-          },
-          options: {
-            title: {
-              display: true,
-              text: this.sub,
-              fontSize: 25
-            },
-            legend: {
-              display: true,
-              position: "right",
-              labels: {
-                fontColor: "#000"
-              }
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0
-              }
-            },
-            tooltips: {
-              enabled: true
-            }
-          }
-        });
-      });
   }
 }

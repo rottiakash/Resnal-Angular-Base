@@ -17,8 +17,6 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
   styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild("canvas") canvas: ElementRef;
-  @ViewChild("table") table: ElementRef;
   fcdchart = []
   results = [];
   charts = [];
@@ -38,6 +36,7 @@ export class DashboardComponent implements OnInit {
   chart = [];
   seriesData = [];
   fcdgraph;
+  canvas;
   constructor(
     private apiservice: ApiService,
     private chartservice: ChartService,
@@ -84,7 +83,11 @@ export class DashboardComponent implements OnInit {
       this.length = this.results.length;
     });
     this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
-    console.log(this.seriesData); 
+    console.log(this.seriesData);
+    this.passCount = this.seriesData[4];
+    this.failCount = this.seriesData[5];
+    this.seriesData.pop();
+    this.seriesData.pop();
     if(this.fcdgraph) this.fcdgraph.destroy();    
     this.fcdgraph = new Chart("fcdgraph", {
       type: 'bar',
@@ -115,70 +118,52 @@ export class DashboardComponent implements OnInit {
       }
     }
     });
-   });
-    this.chartservice.getChart(this.batch, this.sem).subscribe(char => {
-      this.charts = char;
-      console.log(char);
-      for (var j = 0; j < char.failCount.length; j++) {
-        this.failCount++;
-      }
-      for (var k = 0; k < char.passCount.length; k++) {
-        this.passCount++;
-      }
-
-      console.log(this.failCount);
-      console.log(this.passCount);
-      this.chart = new Chart("canvas", {
-        type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data: {
-          labels: ["Fail(%)", "Pass(%)"],
-          datasets: [
-            {
-              data: [this.failCount, this.passCount],
-              //backgroundColor:'green',
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.6)",
-                "rgba(54, 162, 235, 0.6)"
-              ],
-              borderWidth: 1,
-              borderColor: "#777",
-              hoverBorderWidth: 3,
-              hoverBorderColor: "#000"
-            }
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            text: "Pass/Fail Count",
-            fontSize: 25
-          },
-          legend: {
-            display: true,
-            position: "right",
-            labels: {
-              fontColor: "#000"
-            }
-          },
-          layout: {
-            padding: {
-              left: 50,
-              right: 0,
-              bottom: 0,
-              top: 0
-            }
-          },
-          tooltips: {
-            enabled: true
+    if(this.canvas) this.canvas.destroy();
+    this.canvas = new Chart("canvas", {
+      type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ["Fail", "Pass"],
+        datasets: [
+          {
+            data: [this.failCount, this.passCount],
+            //backgroundColor:'green',
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)"
+            ],
+            borderWidth: 1,
+            borderColor: "#777",
+            hoverBorderWidth: 3,
+            hoverBorderColor: "#000"
           }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Pass/Fail Count",
+          fontSize: 25
+        },
+        legend: {
+          display: true,
+          position: "right",
+          labels: {
+            fontColor: "#000"
+          }
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        },
+        tooltips: {
+          enabled: true
         }
-      });
+      }
     });
-    this.passCount = 0;
-    this.failCount = 0;
-    for (this.i = 1; this.i <= this.length; this.i++) {
-      this.len.push(this.i);
-    }
-    console.log(this.len);
+   });
   }
 }

@@ -18,6 +18,8 @@ export class TotalFcdtableComponent implements OnInit {
   pn = 0;
   fn = 0;
   sendstr;
+  failcount = 0;
+  passcount = 0;
   private serviceUrl = '';
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns = ['name', 'usn', 'sem', 'gpa', 'FCD'];
@@ -32,6 +34,8 @@ export class TotalFcdtableComponent implements OnInit {
       this.fcn = 0;
       this.pn = 0;
       this.fn = 0;
+      this.passcount= 0;
+      this.failcount = 0;
       students.forEach(i => {
         if (i.totalFCD === 'FCD') {
           this.fcdn += 1;
@@ -42,8 +46,11 @@ export class TotalFcdtableComponent implements OnInit {
         } else if (i.totalFCD === 'P') {
           this.pn += 1;
         }
+        if(i.gpa==null){}
+        else if(i.gpa>=4) this.passcount++;
+        else this.failcount++;
       });
-      this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn;
+      this.sendstr = this.fcdn + ',' + this.fcn + ',' + this.scn + ',' + this.pn + ',' +this.passcount+ ',' +this.failcount;
       this.data.changeMessage(this.sendstr);
     }); });
     this.getStudent().subscribe((students: TotalFCD[]) => {

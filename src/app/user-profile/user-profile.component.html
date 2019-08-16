@@ -19,7 +19,7 @@
           </select>
           <label>Section</label>
           <select class="form-control" (change)="setSec($event.target.value)">
-            <option>Select Sec</option>
+            <option>Select Sec(Optional)</option>
             <option *ngFor="let sec of secs" value="{{ sec }}">{{
               sec
             }}</option>
@@ -49,11 +49,10 @@
         <div *ngIf="chart">
             <canvas #fcdgraph id="fcdgraph">{{fcdgraph}}</canvas>
             <br><br>
-          <canvas #canvas id="canvas">{{ chart }}</canvas>
         </div>
         <canvas id="myChart"></canvas>
         <div *ngIf="chart1">
-          <canvas #canvas id="canvas1">{{ chart }}</canvas>
+          <canvas #canvas id="canvas">{{ canvas }}</canvas>
         </div>
       </div>
     </div>
