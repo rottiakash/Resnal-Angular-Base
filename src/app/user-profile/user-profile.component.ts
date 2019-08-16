@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     {
       console.log("Destory");
       this.fcdgraph2.destroy();
-      this.canvas.destroy();
+      this.canvas2.destroy();
     }
   }
   results = [];
@@ -54,7 +54,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   chart1 = [];
   seriesData = [];
   fcdgraph2;
-  canvas;
+  canvas2;
   constructor(
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
@@ -187,8 +187,8 @@ export class UserProfileComponent implements OnInit,OnDestroy {
       });
       this.passCount = this.seriesData[0]+this.seriesData[1]+this.seriesData[2]+this.seriesData[3];
       this.failCount = this.seriesData[4];
-      if(this.canvas) this.canvas.destroy();
-      this.canvas = new Chart("canvas", {
+      if(this.canvas2) this.canvas2.destroy();
+      this.canvas2 = new Chart("canvas2", {
         type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data: {
           labels: ["Fail", "Pass"],
