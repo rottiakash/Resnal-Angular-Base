@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   sem;
   sems = [];
   batch;
-  batchs = [2015, 2016, 2017];
+  batchs = [2015, 2016, 2017, 2018];
   sec;
   secs = ["A", "B", "C"];
   sub;
@@ -86,6 +86,13 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         this.sems.push(this.i);
       }
     }
+    if (batch === "2018") {
+      this.sems = [];
+      this.n = (this.year - batch) * 2;
+      for (this.i = 1; this.i <= this.n; this.i++) {
+        this.sems.push(this.i);
+      }
+    }
     this.batch = batch;
   }
   exportAsExcel()
@@ -95,6 +102,18 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   }
   setSem(sem) {
     this.sem = sem;
+    if(this.batch == 2018 && this.sem == 2){
+      this.subs = [
+        "18MAT21 (ADVANCED CALCULUS AND NUMERICAL METHODS)",
+        "18CHE22 (ENGINEERING CHEMISTRY)",
+        "18CPS23 (C PROGRAMMING FOR PROBLEM SOLVING)",
+        "18ELN24 (BASIC ELECTRONICS)",
+        "18ME25	 (ELEMENTS OF MECHANICAL ENGINEERING)",
+        "18CHEL26 (ENGINEERING CHEMISTRY LABORATORY)",
+        "18CPL27 (C PROGRAMMING LABORATORY)",
+        "18EGH28 (TECHNICAL ENGLISH-II)"
+      ];
+    }
     if (this.batch == 2016 && this.sem == 4) {
       this.subs = [
         "15MAT41 (ENGINEERING-MATHEMATICS)",

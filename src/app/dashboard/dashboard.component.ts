@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   sem;
   sems = [];
   batch;
-  batchs = [2015, 2016, 2017];
+  batchs = [2015, 2016, 2017, 2018];
   year = new Date().getFullYear();
   n;
   i;
@@ -74,6 +74,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
       }
     }
     if (batch === "2017") {
+      this.sems = [];
+      this.n = (this.year - batch) * 2;
+      for (this.i = 1; this.i <= this.n; this.i++) {
+        this.sems.push(this.i);
+      }
+    }
+    if (batch === "2018") {
       this.sems = [];
       this.n = (this.year - batch) * 2;
       for (this.i = 1; this.i <= this.n; this.i++) {
