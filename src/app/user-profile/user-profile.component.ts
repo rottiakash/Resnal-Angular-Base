@@ -11,6 +11,7 @@ import { ChartSecService } from "../chartsec.service";
 import { ChartSubService } from "../chartsub.service";
 import { Chart } from "chart.js";
 import { DataService } from "../services/data.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-user-profile",
@@ -59,7 +60,8 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     private apisecservice: ApiSecService,
     private chartservice: ChartSecService,
     private chartsubservice: ChartSubService,
-    private data: DataService
+    private data: DataService,
+    private http:HttpClient
   ) {}
 
   ngOnInit() {}
@@ -166,6 +168,19 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     else
       gen = 'https://rottiakash.pythonanywhere.com/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
+    this.http.get(gen, {observe: 'response'})
+  .subscribe(response => {
+
+    // You can access status:
+    console.log(response.status);
+    if(response.status==204)
+    {
+      window.alert("No data avaliable");
+    }
+
+    // Or any other header:
+    console.log(response.headers.get('X-Custom-Header'));
+  });
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
       .subscribe(result => {

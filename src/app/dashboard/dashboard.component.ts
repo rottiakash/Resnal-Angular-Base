@@ -97,6 +97,19 @@ export class DashboardComponent implements OnInit,OnDestroy {
     var gen: string;
     gen = 'https://rottiakash.pythonanywhere.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
     this.data.changeMessage(gen);
+    this.http.get(gen, {observe: 'response'})
+  .subscribe(response => {
+
+    // You can access status:
+    console.log(response.status);
+    if(response.status==204)
+    {
+      window.alert("No data avaliable");
+    }
+
+    // Or any other header:
+    console.log(response.headers.get('X-Custom-Header'));
+  });
     this.apiservice.getResult(this.batch, this.sem).subscribe(result => {
       this.results = result;
       this.length = this.results.length;
