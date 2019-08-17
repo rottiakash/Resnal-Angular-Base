@@ -12,16 +12,16 @@
       <mat-header-cell *matHeaderCellDef> USN </mat-header-cell>
       <mat-cell *matCellDef="let stud"> {{stud.usn}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="sem">
-      <mat-header-cell *matHeaderCellDef> Semester </mat-header-cell>
-      <mat-cell *matCellDef="let stud"> {{stud.sem}} </mat-cell>
+    <ng-container matColumnDef="sec">
+      <mat-header-cell *matHeaderCellDef> Section </mat-header-cell>
+      <mat-cell *matCellDef="let stud"> {{stud.section}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="gpa">
       <mat-header-cell *matHeaderCellDef> GPA </mat-header-cell>
       <mat-cell *matCellDef="let stud"> {{stud.gpa}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="FCD">
-      <mat-header-cell *matHeaderCellDef> Total FCD </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Overall Grade </mat-header-cell>
       <mat-cell *matCellDef="let stud"> {{stud.totalFCD}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -22,7 +22,7 @@ export class TotalFcdtableComponent implements OnInit {
   passcount = 0;
   private serviceUrl = '';
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns = ['name', 'usn', 'sem', 'gpa', 'FCD'];
+  displayedColumns = ['name', 'usn', 'sec', 'gpa', 'FCD'];
   constructor(private http: HttpClient, private data: DataService) { }
 
   ngOnInit() {

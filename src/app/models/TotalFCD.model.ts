@@ -5,4 +5,5 @@ export interface TotalFCD
     sem : number;
     gpa : number;
     totalFCD: string;
+    section: string;
 }

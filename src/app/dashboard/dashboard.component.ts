@@ -52,7 +52,10 @@ export class DashboardComponent implements OnInit,OnDestroy {
     private data : DataService,
     private http: HttpClient
   ) {}
-
+  exportAsExcel()
+  {
+    window.open("https://rottiakash.pythonanywhere.com/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
+  }
   ngOnInit() {}
   setBatch(batch) {
     console.log(batch);
