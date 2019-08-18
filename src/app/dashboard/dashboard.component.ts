@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   ) {}
   exportAsExcel()
   {
-    window.open("https://rottiakash.pythonanywhere.com/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
+    window.open("https://resnalbackend.herokuapp.com/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
   }
   ngOnInit() {}
   setBatch(batch) {
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   api() {
     console.log(this.batch, this.sem);
     var gen: string;
-    gen = 'https://rottiakash.pythonanywhere.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
+    gen = 'https://resnalbackend.herokuapp.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
     this.data.changeMessage(gen);
     this.http.get(gen, {observe: 'response'})
   .subscribe(response => {

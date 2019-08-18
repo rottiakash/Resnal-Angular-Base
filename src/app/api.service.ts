@@ -8,7 +8,7 @@ export class ApiService {
   url;
   constructor(public http: Http) {
     console.log("APi called");
-    this.url = "https://rottiakash.pythonanywhere.com/json/?batch=";
+    this.url = "https://resnalbackend.herokuapp.com/json/?batch=";
   }
   getResult(batch, sem) {
     return this.http
