@@ -56,7 +56,21 @@ export class DashboardComponent implements OnInit,OnDestroy {
   {
     window.open("https://resnalbackend.herokuapp.com/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.http.get("https://resnalbackend.herokuapp.com/wake", {observe: 'response'})
+  .subscribe(response => {
+
+    // You can access status:
+    console.log(response.status);
+    if(response.status==200)
+    {
+      console.log("Dyno is now Awake");
+    }
+
+    // Or any other header:
+    console.log(response.headers.get('X-Custom-Header'));
+  });
+  }
   setBatch(batch) {
     console.log(batch);
     if (batch === "2015") {

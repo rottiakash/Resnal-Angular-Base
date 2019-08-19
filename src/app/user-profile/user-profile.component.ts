@@ -104,6 +104,19 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   }
   setSem(sem) {
     this.sem = sem;
+    if(this.batch == 2017 && this.sem == 3){
+      this.subs = [
+        "17MAT31 (ENGINEERING MATHEMATICS - III)",
+        "17CS32 (ANALOG AND DIGITAL ELECTRONICS)",
+        "17CS33 (DATA STRUCTURES AND APPLICATIONS)",
+        "17CS34 (COMPUTER ORGANIZATION)",
+        "17CS35	 (UNIX AND SHELL PROGRAMMING)",
+        "17CS36 (DISCRETE MATHEMATICAL STRUCTURES)",
+        "17CSL37 (ANALOG AND DIGITAL ELECTRONICS LABORATORY)",
+        "17CSL38 (DATA STRUCTURES LABORATORY)",
+        "17KKX39 (KANNADA)"
+      ];
+    }
     if(this.batch == 2018 && this.sem == 2){
       this.subs = [
         "18MAT21 (ADVANCED CALCULUS AND NUMERICAL METHODS)",
