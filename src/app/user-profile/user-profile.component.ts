@@ -102,6 +102,9 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     var scode = this.sub.substr(0,this.sub.indexOf(' '));
     window.open("https://resnalbackend.herokuapp.com/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
   }
+  reload(){
+    window.location.reload();
+  }
   setSem(sem) {
     this.sem = sem;
     if(this.batch == 2017 && this.sem == 3){
