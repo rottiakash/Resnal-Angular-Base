@@ -16,12 +16,6 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/table-list",
-    title: "College Position",
-    icon: "content_paste",
-    class: ""
-  },
-  {
     path: "/typography",
     title: "Fetch Results",
     icon: "library_books",
