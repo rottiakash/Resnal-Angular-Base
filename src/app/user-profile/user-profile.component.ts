@@ -107,6 +107,33 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   }
   setSem(sem) {
     this.sem = sem;
+    if (this.batch == 2015 && this.sem == 7) {
+      this.subs = [
+        "15CS71 (WEB TECHNOLOGY AND ITS APPLICATIONS)",
+        "15CS72 (ADVANCED COMPUTER ARCHITECTURES)",
+        "15CS73 (MACHINE LEARNING)",
+        "15CS744 (UNIX SYSTEM PROGRAMMING)",
+        "15CS754 (STORAGE AREA NETWORKS)",
+        "15CSL76 (MACHINE LEARNING  LABORATORY)",
+        "15CSL77 (WEB TECHNOLOGY LABORATORY  WITH MINI PROJECT)",
+        "15CSP78 (PROJECT PHASE 1 + SEMINAR)"
+      ];
+    }
+    if (this.batch == 2016 && this.sem == 5) {
+      this.subs = [
+        "15CS51 (MANAGEMENT AND ENTREPRENEURSHIP FOR IT INDUSTRY)",
+        "15CS52 (COMPUTER NETWORKS)",
+        "15CS53 (DATABASE MANAGEMENT SYSTEM)",
+        "15CS54 (AUTOMATA THEORY AND COMPUTABILITY)",
+        "15CS553 (ADVANCED JAVA AND J2EE)",
+        "15CSL57 (COMPUTER NETWORK LAB)",
+        "15CSL58 (DBMS LABORATORY WITH MIN PROJECT)",
+        "15PHY561 (LASER PHYSICS AND NON LINEAR OPTICS)",
+        "15ME562 (ENERGY AND ENVIRONMENT)",
+        "15CS564 (DOT NET FRAMEWORK FOR APPLICATION DEVELOPMENT)",
+        "15CS562 (ARTIFICIAL INTELLIGENCE)"
+      ];
+    }
     if(this.batch == 2017 && this.sem == 3){
       this.subs = [
         "17MAT31 (ENGINEERING MATHEMATICS - III)",
