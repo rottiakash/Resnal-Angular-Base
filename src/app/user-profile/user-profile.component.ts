@@ -117,7 +117,8 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "17CS46 (DATA COMMUNICATION)",
         "17CSL47 (DESIGN AND ANALYSIS OF ALGORITHMS LABORATORY)",
         "17CSL48 (MICROPROCESSORS LABORATORY)",
-        "17CPH49 (CONSTITUTION OF INDIA, PROFESSIONAL ETHICS AND HUMAN RIGHTS)"
+        "17CPH49 (CONSTITUTION OF INDIA, PROFESSIONAL ETHICS AND HUMAN RIGHTS)",
+        "17MATDIP41 (Additional Mathematics-II)"
       ];
     }
     if (this.batch == 2015 && this.sem == 7) {
