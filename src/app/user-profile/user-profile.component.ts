@@ -107,6 +107,17 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   }
   setSem(sem) {
     this.sem = sem;
+    if (this.batch == 2017 && this.sem == 1) {
+      this.subs = [
+        "17MAT11 (ENGINEERING MATHEMATICS-I)",
+        "17PHY12 (ENGINEERING PHYSICS)",
+        "17CIV13 (ELEMENTS OF CIVIL ENGG. & MECHANICS)",
+        "17EME14 (ELEMENTS OF MECHANICAL ENGINEERING)",
+        "17ELE15 (BASIC ELECTRICAL ENGINEERING)",
+        "17WSL16 (WORKSHOP PRACTICE)",
+        "17PHYL17 (ENGINEERING PHYSICS LAB.)"
+      ];
+    }
     if (this.batch == 2016 && this.sem == 6) {
       this.subs = [
         "15CS61 (CRYPTOGRAPHY, NETWORK SECURITY AND CYBER LAW)",
