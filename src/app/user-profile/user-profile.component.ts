@@ -100,7 +100,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   exportAsExcel()
   {
     var scode = this.sub.substr(0,this.sub.indexOf(' '));
-    window.open("https://resnalbackend.herokuapp.com/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
+    window.open("http://resnal.ml:1216/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
   }
   reload(){
     window.location.reload();
@@ -270,9 +270,9 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     var sub: string = this.sub;
     var scode = sub.substr(0,sub.indexOf(' '));
     if(this.sec==undefined)
-      gen = 'https://resnalbackend.herokuapp.com/getfcd/?&sc=' + scode + '&batch=' + this.batch;
+      gen = 'http://resnal.ml:1216/getfcd/?&sc=' + scode + '&batch=' + this.batch;
     else
-      gen = 'https://resnalbackend.herokuapp.com/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
+      gen = 'http://resnal.ml:1216/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
     this.http.get(gen, {observe: 'response'})
   .subscribe(response => {

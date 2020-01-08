@@ -54,13 +54,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
   ) {}
   exportAsExcel()
   {
-    window.open("https://resnalbackend.herokuapp.com/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
+    window.open("http://resnal.ml:1216/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
   }
   reload(){
     window.location.reload();
   }
   ngOnInit() {
-    this.http.get("https://resnalbackend.herokuapp.com/wake", {observe: 'response'})
+    this.http.get("http://resnal.ml:1216/wake", {observe: 'response'})
   .subscribe(response => {
 
     // You can access status:
@@ -112,7 +112,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   api() {
     console.log(this.batch, this.sem);
     var gen: string;
-    gen = 'https://resnalbackend.herokuapp.com/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
+    gen = 'http://resnal.ml:1216/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
     this.data.changeMessage(gen);
     this.http.get(gen, {observe: 'response'})
   .subscribe(response => {
