@@ -56,6 +56,10 @@ export class DashboardComponent implements OnInit,OnDestroy {
   {
     window.open("http://resnal.ml:1216/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
   }
+  exportAllAsExcel()
+  {
+    window.open("http://resnal.ml:1216/genallXL/?batch="+this.batch+"&sem="+this.sem, "_blank");
+  }
   reload(){
     window.location.reload();
   }
