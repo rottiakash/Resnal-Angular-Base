@@ -100,13 +100,25 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   exportAsExcel()
   {
     var scode = this.sub.substr(0,this.sub.indexOf(' '));
-    window.open("http://resnal.ml:1216/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
+    window.open("/api/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
   }
   reload(){
     window.location.reload();
   }
   setSem(sem) {
     this.sem = sem;
+    if (this.batch == 2016 && this.sem == 7) {
+      this.subs = [
+        "15CS71 (WEB TECHNOLOGY AND ITS APPLICATIONS)",
+        "15CS72 (ADVANCED COMPUTER ARCHITECTURES)",
+        "15CS73 (MACHINE LEARNING)",
+        "15CS754 (STORAGE AREA NETWORKS)",
+        "15CS744 (UNIX SYSTEM PROGRAMMING)",
+        "15CSL76 (MACHINE LEARNING  LABORATORY)",
+        "15CSL77 (WEB TECHNOLOGY LABORATORY  WITH MINI PROJECT)",
+        "15CSP78 (PROJECT PHASE 1 + SEMINAR)"
+      ];
+    }
     if (this.batch == 2018 && this.sem == 1) {
       this.subs = [
         "18MAT11 (CALCULUS AND LINEAR ALGEBRA)",
@@ -270,9 +282,9 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     var sub: string = this.sub;
     var scode = sub.substr(0,sub.indexOf(' '));
     if(this.sec==undefined)
-      gen = 'http://resnal.ml:1216/getfcd/?&sc=' + scode + '&batch=' + this.batch;
+      gen = '/api/getfcd/?&sc=' + scode + '&batch=' + this.batch;
     else
-      gen = 'http://resnal.ml:1216/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
+      gen = '/api/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
     this.data.changeMessage(gen);
     this.http.get(gen, {observe: 'response'})
   .subscribe(response => {

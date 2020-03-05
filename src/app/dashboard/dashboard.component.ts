@@ -54,17 +54,17 @@ export class DashboardComponent implements OnInit,OnDestroy {
   ) {}
   exportAsExcel()
   {
-    window.open("http://resnal.ml:1216/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
+    window.open("/api/genXLDash/?batch="+this.batch+"&sem="+this.sem+"&pc="+this.passCount+"&fc="+this.failCount, "_blank");
   }
   exportAllAsExcel()
   {
-    window.open("http://resnal.ml:1216/genallXL/?batch="+this.batch+"&sem="+this.sem, "_blank");
+    window.open("/api/genallXL/?batch="+this.batch+"&sem="+this.sem, "_blank");
   }
   reload(){
     window.location.reload();
   }
   ngOnInit() {
-    this.http.get("http://resnal.ml:1216/wake", {observe: 'response'})
+    this.http.get("/api/wake", {observe: 'response'})
   .subscribe(response => {
 
     // You can access status:
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   api() {
     console.log(this.batch, this.sem);
     var gen: string;
-    gen = 'http://resnal.ml:1216/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
+    gen = '/api/totalfcd/?batch=' + this.batch + '&sem=' + this.sem;
     this.data.changeMessage(gen);
     this.http.get(gen, {observe: 'response'})
   .subscribe(response => {

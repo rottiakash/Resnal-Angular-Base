@@ -8,7 +8,7 @@ export class ApiSecService {
   url;
   constructor(public http: Http) {
     console.log("APi called");
-    this.url = "http://resnal.ml:1216/json/?batch=";
+    this.url = "/api/json/?batch=";
   }
   getResultSec(batch, sem, sec) {
     return this.http
