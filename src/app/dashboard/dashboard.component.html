@@ -17,6 +17,12 @@
             <option>Select Sem</option>
             <option *ngFor="let sem of sems">{{ sem }}</option>
           </select>
+           <select class="form-control" (change)="setSec($event.target.value)">
+            <option>Select Sec(Optional)</option>
+            <option *ngFor="let sec of secs" value="{{ sec }}">{{
+              sec
+            }}</option>
+          </select>
         </div>
         <button class="btn btn-large" (click)="api()">Submit</button>
         <button class="btn btn-large" (click)="reload()">Reset</button>

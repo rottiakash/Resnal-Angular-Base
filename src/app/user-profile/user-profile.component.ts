@@ -4,7 +4,7 @@ import {
   AfterViewInit,
   ElementRef,
   ViewChild,
-  OnDestroy
+  OnDestroy,
 } from "@angular/core";
 import { ApiSecService } from "../apisec.service";
 import { ChartSecService } from "../chartsec.service";
@@ -16,12 +16,11 @@ import { HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-user-profile",
   templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.css"]
+  styleUrls: ["./user-profile.component.css"],
 })
-export class UserProfileComponent implements OnInit,OnDestroy {
-  ngOnDestroy(){
-    if(this.fcdgraph2)
-    {
+export class UserProfileComponent implements OnInit, OnDestroy {
+  ngOnDestroy() {
+    if (this.fcdgraph2) {
       console.log("Destory");
       this.fcdgraph2.destroy();
       this.canvas2.destroy();
@@ -61,7 +60,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     private chartservice: ChartSecService,
     private chartsubservice: ChartSubService,
     private data: DataService,
-    private http:HttpClient
+    private http: HttpClient
   ) {}
 
   ngOnInit() {}
@@ -97,16 +96,51 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     }
     this.batch = batch;
   }
-  exportAsExcel()
-  {
-    var scode = this.sub.substr(0,this.sub.indexOf(' '));
-    window.open("/api/genXL/?sec="+this.sec+"&scode="+scode+"&batch="+this.batch, "_blank");
+  exportAsExcel() {
+    var scode = this.sub.substr(0, this.sub.indexOf(" "));
+    window.open(
+      "/api/genXL/?sec=" +
+        this.sec +
+        "&scode=" +
+        scode +
+        "&batch=" +
+        this.batch,
+      "_blank"
+    );
   }
-  reload(){
+  reload() {
     window.location.reload();
   }
   setSem(sem) {
     this.sem = sem;
+    if (this.batch == 2018 && this.sem == 3) {
+      this.subs = [
+        "18MAT31 (TRANSFORM CALCULUS,FOURIER SERIES & NUM TECH)",
+        "18CS32 (DATA STRUCTURES AND APPLICATIONS)",
+        "18CS33 (ANALOG AND DIGITAL ELECTRONICS)",
+        "18CS34 (COMPUTER ORGANIZATION)",
+        "18CS35	 (SOFTWARE ENGINEERING)",
+        "18CS36 (DISCRETE MATHEMATICAL STRUCTURES)",
+        "18CSL37 (ANALOG AND DIGITAL ELECTRONICS LABORATORY",
+        "18CSL38 (DATA STRUCTURES LABORATORY)",
+        "18KVK39 (VYAVAHARIKA KANNADA)",
+      ];
+    }
+    if (this.batch == 2017 && this.sem == 5) {
+      this.subs = [
+        "17CS51	(MGMT. AND ENTREPRENEURSHIP FOR IT INDUSTRY)",
+        "17CS52 (COMPUTER NETWORKS)",
+        "17CS53 (DATABASE MANAGEMENT SYSTEM)",
+        "17CS54 (AUTOMATA THEORY AND COMPUTABILITY)",
+        "17CS553 (ADVANCED JAVA AND J2EE)",
+        "17CS562 (ARTIFICIAL INTELLIGENCE)",
+        "17ME562 (ENERGY AND ENVIRONMENT)",
+        "17CS564 (.NET FRAMEWORK FOR APPLICATION DEVELOPMENT)",
+        "17IM564 (HUMAN RESOURCE MANAGEMENT)",
+        "17CSL57 (COMPUTER NETWORK LABORATORY)",
+        "17CSL58 (DBMS LABORATORY WITH MINI PROJECT)",
+      ];
+    }
     if (this.batch == 2016 && this.sem == 7) {
       this.subs = [
         "15CS71 (WEB TECHNOLOGY AND ITS APPLICATIONS)",
@@ -116,7 +150,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS744 (UNIX SYSTEM PROGRAMMING)",
         "15CSL76 (MACHINE LEARNING  LABORATORY)",
         "15CSL77 (WEB TECHNOLOGY LABORATORY  WITH MINI PROJECT)",
-        "15CSP78 (PROJECT PHASE 1 + SEMINAR)"
+        "15CSP78 (PROJECT PHASE 1 + SEMINAR)",
       ];
     }
     if (this.batch == 2018 && this.sem == 1) {
@@ -128,7 +162,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "18EGDL15 (ENGINEERING GRAPHICS)",
         "18PHYL16 (ENGINEERING PHYSICS LABORATORY)",
         "18ELEL17 (BASIC ELECTRICAL ENGINEERING LABORATORY)",
-        "18EGH18 (TECHNICAL ENGLISH-I)"
+        "18EGH18 (TECHNICAL ENGLISH-I)",
       ];
     }
     if (this.batch == 2015 && this.sem == 8) {
@@ -139,7 +173,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS834 (SYSTEM MODELING AND SIMULATION)",
         "15CS832 (MODERN INTERFACE DESIGN)",
         "15CSP85 (PROJECT WORK PHASE II)",
-        "15CSS86 (SEMINAR)"
+        "15CSS86 (SEMINAR)",
       ];
     }
     if (this.batch == 2017 && this.sem == 1) {
@@ -150,7 +184,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "17EME14 (ELEMENTS OF MECHANICAL ENGINEERING)",
         "17ELE15 (BASIC ELECTRICAL ENGINEERING)",
         "17WSL16 (WORKSHOP PRACTICE)",
-        "17PHYL17 (ENGINEERING PHYSICS LAB.)"
+        "17PHYL17 (ENGINEERING PHYSICS LAB.)",
       ];
     }
     if (this.batch == 2016 && this.sem == 6) {
@@ -165,10 +199,10 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS664 (PYTHON APPLICATION PROGRAMMING)",
         "15CSL67 (SYSTEM SOFTWARE & OPERATING SYSTEM LAB)",
         "15CSL68 (COMP. GRAPHICS LABORATORY WITH MINI PROJECT)",
-        "15IM663 (Value engineering)"
+        "15IM663 (Value engineering)",
       ];
     }
-    if(this.batch == 2017 && this.sem == 4){
+    if (this.batch == 2017 && this.sem == 4) {
       this.subs = [
         "17MAT41 (ENGINEERING MATHEMATICS - IV)",
         "17CS42 (OBJECT ORIENTED CONCEPTS)",
@@ -179,7 +213,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "17CSL47 (DESIGN AND ANALYSIS OF ALGORITHMS LABORATORY)",
         "17CSL48 (MICROPROCESSORS LABORATORY)",
         "17CPH49 (CONSTITUTION OF INDIA, PROFESSIONAL ETHICS AND HUMAN RIGHTS)",
-        "17MATDIP41 (Additional Mathematics-II)"
+        "17MATDIP41 (Additional Mathematics-II)",
       ];
     }
     if (this.batch == 2015 && this.sem == 7) {
@@ -191,7 +225,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS754 (STORAGE AREA NETWORKS)",
         "15CSL76 (MACHINE LEARNING  LABORATORY)",
         "15CSL77 (WEB TECHNOLOGY LABORATORY  WITH MINI PROJECT)",
-        "15CSP78 (PROJECT PHASE 1 + SEMINAR)"
+        "15CSP78 (PROJECT PHASE 1 + SEMINAR)",
       ];
     }
     if (this.batch == 2016 && this.sem == 5) {
@@ -206,10 +240,10 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15PHY561 (LASER PHYSICS AND NON LINEAR OPTICS)",
         "15ME562 (ENERGY AND ENVIRONMENT)",
         "15CS564 (DOT NET FRAMEWORK FOR APPLICATION DEVELOPMENT)",
-        "15CS562 (ARTIFICIAL INTELLIGENCE)"
+        "15CS562 (ARTIFICIAL INTELLIGENCE)",
       ];
     }
-    if(this.batch == 2017 && this.sem == 3){
+    if (this.batch == 2017 && this.sem == 3) {
       this.subs = [
         "17MAT31 (ENGINEERING MATHEMATICS - III)",
         "17CS32 (ANALOG AND DIGITAL ELECTRONICS)",
@@ -219,10 +253,10 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "17CS36 (DISCRETE MATHEMATICAL STRUCTURES)",
         "17CSL37 (ANALOG AND DIGITAL ELECTRONICS LABORATORY)",
         "17CSL38 (DATA STRUCTURES LABORATORY)",
-        "17KKX39 (KANNADA)"
+        "17KKX39 (KANNADA)",
       ];
     }
-    if(this.batch == 2018 && this.sem == 2){
+    if (this.batch == 2018 && this.sem == 2) {
       this.subs = [
         "18MAT21 (ADVANCED CALCULUS AND NUMERICAL METHODS)",
         "18CHE22 (ENGINEERING CHEMISTRY)",
@@ -231,7 +265,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "18ME25	 (ELEMENTS OF MECHANICAL ENGINEERING)",
         "18CHEL26 (ENGINEERING CHEMISTRY LABORATORY)",
         "18CPL27 (C PROGRAMMING LABORATORY)",
-        "18EGH28 (TECHNICAL ENGLISH-II)"
+        "18EGH28 (TECHNICAL ENGLISH-II)",
       ];
     }
     if (this.batch == 2016 && this.sem == 4) {
@@ -243,7 +277,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS45 (OOC)",
         "15CS46 (DC)",
         "15CSL47 (DAA-LAB)",
-        "15CSL48 (MP&MC-LAB)"
+        "15CSL48 (MP&MC-LAB)",
       ];
     } else if (this.batch == 2015 && this.sem == 6) {
       this.subs = [
@@ -256,7 +290,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "15CS661 (MAD)",
         "15CS664 (Python)",
         "15CSL67 (SS&OS-LAB)",
-        "15CSL68 (CG-Laboratory)"
+        "15CSL68 (CG-Laboratory)",
       ];
     } else if (this.batch == 2017 && this.sem == 2) {
       this.subs = [
@@ -266,7 +300,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         "17CPL26 (CCP-LAB)",
         "17CHEL27 (CHEM-LAB)",
         "17CHE22 (CHEM)",
-        "17CED24 (CAED)"
+        "17CED24 (CAED)",
       ];
     }
   }
@@ -280,66 +314,76 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     console.log(this.batch, this.sem, this.sec, this.sub);
     var gen: string;
     var sub: string = this.sub;
-    var scode = sub.substr(0,sub.indexOf(' '));
-    if(this.sec==undefined)
-      gen = '/api/getfcd/?&sc=' + scode + '&batch=' + this.batch;
+    var scode = sub.substr(0, sub.indexOf(" "));
+    if (this.sec == undefined)
+      gen = "/api/getfcd/?&sc=" + scode + "&batch=" + this.batch;
     else
-      gen = '/api/secfcd/?sec=' + this.sec + '&scode=' + scode + '&batch=' + this.batch;
+      gen =
+        "/api/secfcd/?sec=" +
+        this.sec +
+        "&scode=" +
+        scode +
+        "&batch=" +
+        this.batch;
     this.data.changeMessage(gen);
-    this.http.get(gen, {observe: 'response'})
-  .subscribe(response => {
+    this.http.get(gen, { observe: "response" }).subscribe((response) => {
+      // You can access status:
+      console.log(response.status);
+      if (response.status == 204) {
+        window.alert("No data avaliable");
+      }
 
-    // You can access status:
-    console.log(response.status);
-    if(response.status==204)
-    {
-      window.alert("No data avaliable");
-    }
-
-    // Or any other header:
-    console.log(response.headers.get('X-Custom-Header'));
-  });
+      // Or any other header:
+      console.log(response.headers.get("X-Custom-Header"));
+    });
     this.apisecservice
       .getResultSec(this.batch, this.sem, this.sec)
-      .subscribe(result => {
+      .subscribe((result) => {
         this.results = result;
         // console.log(result);
       });
-      this.data.currentMessage.subscribe(message => { this.seriesData = message.split(',').map(Number);
-      console.log(this.seriesData);    
-      if(this.fcdgraph2) this.fcdgraph2.destroy(); 
+    this.data.currentMessage.subscribe((message) => {
+      this.seriesData = message.split(",").map(Number);
+      console.log(this.seriesData);
+      if (this.fcdgraph2) this.fcdgraph2.destroy();
       this.fcdgraph2 = new Chart("fcdgraph2", {
-        type: 'bar',
+        type: "bar",
         data: {
-          labels: ['FCD', 'FC', 'SC', 'P', 'F'],
-          datasets: [{
+          labels: ["FCD", "FC", "SC", "P", "F"],
+          datasets: [
+            {
               data: this.seriesData,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)'
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)'
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
               ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-        legend:{
-          display:false
-        }
-      }
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          legend: {
+            display: false,
+          },
+        },
       });
-      this.passCount = this.seriesData[0]+this.seriesData[1]+this.seriesData[2]+this.seriesData[3];
+      this.passCount =
+        this.seriesData[0] +
+        this.seriesData[1] +
+        this.seriesData[2] +
+        this.seriesData[3];
       this.failCount = this.seriesData[4];
-      if(this.canvas2) this.canvas2.destroy();
+      if (this.canvas2) this.canvas2.destroy();
       this.canvas2 = new Chart("canvas2", {
         type: "pie", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data: {
@@ -350,41 +394,41 @@ export class UserProfileComponent implements OnInit,OnDestroy {
               //backgroundColor:'green',
               backgroundColor: [
                 "rgba(255, 99, 132, 0.6)",
-                "rgba(54, 162, 235, 0.6)"
+                "rgba(54, 162, 235, 0.6)",
               ],
               borderWidth: 1,
               borderColor: "#777",
               hoverBorderWidth: 3,
-              hoverBorderColor: "#000"
-            }
-          ]
+              hoverBorderColor: "#000",
+            },
+          ],
         },
         options: {
           title: {
             display: true,
             text: this.sub,
-            fontSize: 25
+            fontSize: 25,
           },
           legend: {
             display: true,
             position: "right",
             labels: {
-              fontColor: "#000"
-            }
+              fontColor: "#000",
+            },
           },
           layout: {
             padding: {
               left: 50,
               right: 0,
               bottom: 0,
-              top: 0
-            }
+              top: 0,
+            },
           },
           tooltips: {
-            enabled: true
-          }
-        }
+            enabled: true,
+          },
+        },
       });
-     });
+    });
   }
 }
