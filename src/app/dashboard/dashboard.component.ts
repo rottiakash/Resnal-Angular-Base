@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   charts = [];
   sem;
   sec;
+  back = false;
   sems = [];
   batch;
   batchs = [2015, 2016, 2017, 2018];
@@ -56,25 +57,61 @@ export class DashboardComponent implements OnInit, OnDestroy {
   setSec(sec) {
     this.sec = sec;
   }
-
   exportAsExcel() {
-    window.open(
-      "/api/genXLDash/?batch=" +
-        this.batch +
-        "&sem=" +
-        this.sem +
-        "&pc=" +
-        this.passCount +
-        "&fc=" +
-        this.failCount,
-      "_blank"
-    );
+    if (this.sec == undefined)
+      window.open(
+        "/api/genXLDash/?batch=" +
+          this.batch +
+          "&sem=" +
+          this.sem +
+          "&pc=" +
+          this.passCount +
+          "&fc=" +
+          this.failCount +
+          "&back=" +
+          this.back,
+        "_blank"
+      );
+    else
+      window.open(
+        "/api/genXLDashSec/?batch=" +
+          this.batch +
+          "&sem=" +
+          this.sem +
+          "&sec=" +
+          this.sec +
+          "&pc=" +
+          this.passCount +
+          "&fc=" +
+          this.failCount +
+          "&back=" +
+          this.back,
+        "_blank"
+      );
   }
   exportAllAsExcel() {
-    window.open(
-      "/api/genallXL/?batch=" + this.batch + "&sem=" + this.sem,
-      "_blank"
-    );
+    if (this.sec == undefined)
+      window.open(
+        "/api/genallXL/?batch=" +
+          this.batch +
+          "&sem=" +
+          this.sem +
+          "&back=" +
+          this.back,
+        "_blank"
+      );
+    else
+      window.open(
+        "/api/genallXLSec/?batch=" +
+          this.batch +
+          "&sem=" +
+          this.sem +
+          "&sec=" +
+          this.sec +
+          "&back=" +
+          this.back,
+        "_blank"
+      );
   }
   reload() {
     window.location.reload();
@@ -130,9 +167,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   api() {
     console.log(this.batch, this.sem);
+    console.log(this.back);
     var gen: string;
     if (this.sec == undefined)
-      gen = "/api/totalfcd/?batch=" + this.batch + "&sem=" + this.sem;
+      gen =
+        "/api/totalfcd/?batch=" +
+        this.batch +
+        "&sem=" +
+        this.sem +
+        "&back=" +
+        this.back;
     else
       gen =
         "/api/totalfcds/?batch=" +
@@ -140,7 +184,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         "&sem=" +
         this.sem +
         "&sec=" +
-        this.sec;
+        this.sec +
+        "&back=" +
+        this.back;
     this.data.changeMessage(gen);
     this.http.get(gen, { observe: "response" }).subscribe((response) => {
       // You can access status:

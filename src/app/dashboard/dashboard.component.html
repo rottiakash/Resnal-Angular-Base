@@ -16,14 +16,23 @@
           <select class="form-control">
             <option>Select Sem</option>
             <option *ngFor="let sem of sems">{{ sem }}</option>
+             
           </select>
-           <select class="form-control" (change)="setSec($event.target.value)">
+          
+        </div>
+        <div class="form-group" (change)="setSec($event.target.value)">
+        <label for="gender">Section</label>
+           <select class="form-control">
             <option>Select Sec(Optional)</option>
             <option *ngFor="let sec of secs" value="{{ sec }}">{{
               sec
             }}</option>
           </select>
-        </div>
+          </div>
+         <div class="form-group" >
+        <label for="gender">Yearback only</label>
+              <input type="checkbox" id="backlog" name="backlogs" value="{{back}}" [(ngModel)]="back">
+          </div>
         <button class="btn btn-large" (click)="api()">Submit</button>
         <button class="btn btn-large" (click)="reload()">Reset</button>
         <button class="btn btn-large" (click)="exportAsExcel()" *ngIf="fcdgraph">Export</button>
